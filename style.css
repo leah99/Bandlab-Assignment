@@ -1,0 +1,123 @@
+/** Navigation Bar */
+.navigation {
+    display: flex;
+    background-color: #222222;
+}
+
+.navigation a {
+    padding: 1rem 2rem;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.navigation a:hover {
+    background-color: #E74C3C;
+}
+
+/** Home Page -- body */
+.home button {
+    padding: 0.5rem 2rem;
+    border-radius: 1rem;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.home button:nth-child(2) {
+    border: 2px solid #E74C3C;
+    color: #E74C3C;
+}
+
+.home button:nth-child(2):hover {
+    background-color: #E74C3C;
+    color: #FFFFFF;
+}
+
+.home button:nth-child(3) {
+    border: 2px solid #E74C3C;
+    background-color: #E74C3C;
+    color: #FFFFFF;
+}
+
+.home button:nth-child(3):hover {
+    border: 2px solid #222222;
+    background-color: #222222;
+}
+
+.home ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.home li h2 {
+    display: inline;
+    vertical-align: middle;
+}
+
+.home li span:nth-child(2) {
+    border-radius: 1rem;
+    padding: 0.1rem 1rem;
+    font-size: small;
+    background-color: #E7E7E7;
+    color: #222222;
+    border-bottom: 2px solid #E74C3C;
+}
+
+.home li span:nth-child(3) {
+    display: block;
+    margin-bottom: 2rem;
+}
+
+/** Audio Page -- body */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+.audio-btn {
+    padding: 2rem;
+}
+
+.audio-btn button:nth-child(2n+1) {
+    padding: 0.5rem 2rem;
+    border-radius: 1rem;
+    border: 2px solid #E74C3C;
+    background-color: transparent;
+    color: #E74C3C;
+    cursor: pointer;
+}
+
+.audio-btn button:nth-child(2n+1):hover {
+    border: 2px solid #E74C3C;
+    background-color: #E74C3C;
+    color: #FFFFFF;
+}
+
+.audio-btn button:nth-child(2) {
+    padding: 1rem 4rem;
+    border-radius: 2rem;
+    border: 2px solid #E74C3C;
+    background-color: #E74C3C;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.audio-btn button:nth-child(2):hover {
+    border: 2px solid #222222;
+    background-color: #222222;
+}
+
+.audio-btn button:nth-child(2n+1)[disabled] {
+    border-color: #FFBBBC;
+    color:#FFBBBC;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.audio-btn button:nth-child(2)[disabled] {
+    border-color: #FFBBBC;
+    background-color:#FFBBBC;
+    cursor: not-allowed;
+    pointer-events: none;
+}

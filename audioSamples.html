@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Starter Snowpack App" />
+    <link rel="stylesheet" href="./style.css">
+    <title>Web Audio API</title>
+  </head>
+  <body>
+    <nav class="navigation">
+        <a href="./index.html">Home</a>
+        <a href="./audioSamples.html">Audio Samples</a>
+    </nav>
+    <div class="container">
+        <div class="audio" id="audioSelection">
+            <input type="radio" id="audio-0" name="audio" value="./Audio/new-wave-kit.ogg"> New Wave Kit
+            <input type="radio" id="audio-1" name="audio" value="./Audio/synth-organ.ogg" > Synth Organ
+        </div>
+        <div class="audio-btn" id="btnSelection">
+            <button class="pause">Pause</button>
+            <button class="play">Play</button>
+            <button class="stop">Stop</button>
+        </div>
+    </div>
+    <script>
+        let noMusic = true;
+        let currentAudio = 0;
+
+        const playBtn = document.querySelector('.play');
+        const pauseBtn = document.querySelector('.pause');
+        const stopBtn = document.querySelector('.stop');
+
+        if (!document.getElementById('audioSelection').checked) {
+            playBtn.disabled = true;
+            pauseBtn.disabled = true;
+            stopBtn.disabled = true;
+        }
+
+        const radioBtn = document.querySelectorAll('input[type="radio"]');
+
+        const enableBtn = () => {
+            playBtn.disabled = false;
+            pauseBtn.disabled = false;
+            stopBtn.disabled = false;
+        }
+
+        radioBtn.forEach((btn) => {
+            btn.addEventListener('change', enableBtn);
+        });
+        
+        const audioContext0 = new (window.AudioContext || window.webkitAudioContext);
+        const audioContext1 = new (window.AudioContext || window.webkitAudioContext);
+
+        var audio0 = new Audio("./Audio/new-wave-kit.ogg");
+        const source0 = audioContext0.createMediaElementSource(audio0);
+        const volume0 = audioContext0.createGain();
+        volume0.gain.value = 0.8;
+        source0.connect(volume0);
+        source0.connect(audioContext0.destination);
+
+        var audio1 = new Audio("./Audio/synth-organ.ogg");
+        const source1 = audioContext1.createMediaElementSource(audio1);
+        const volume1 = audioContext1.createGain();
+        volume1.gain.value = 0.8;
+        source1.connect(volume1);
+        source1.connect(audioContext1.destination);
+       
+        playBtn.addEventListener("click", ()  => {
+            const selectedAudio = document.querySelector('input[name="audio"]:checked').value;
+            const audio = new Audio(selectedAudio);
+
+            if (selectedAudio === "./Audio/synth-organ.ogg") {
+                audio0.pause();
+                audio0.currentTime = 0;
+                audio1.play();
+            } else {
+                console.log("2")
+                audio1.pause();
+                audio1.currentTime = 0;
+                audio0.play();
+            }
+        })
+
+        pauseBtn.addEventListener("click", ()  => {
+            const selectedAudio = document.querySelector('input[name="audio"]:checked').value;
+            if (selectedAudio === "./Audio/synth-organ.ogg") {
+                audio1.pause();
+            } else {
+                audio0.pause();
+            }
+        })
+
+        stopBtn.addEventListener("click", ()  => {
+            const selectedAudio = document.querySelector('input[name="audio"]:checked').value;
+
+            if (selectedAudio === "./Audio/synth-organ.ogg") {
+                audio1.pause();
+                audio1.currentTime = 0;
+            } else {
+                audio0.pause();
+                audio0.currentTime = 0;
+            }
+        })
+    </script>
+  </body>
+</html>
